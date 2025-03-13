@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Title -->
-  <title>oKanban</title>
+  <title>My Kanban's Board</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml"
@@ -29,18 +29,18 @@
     -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
 
-  <script type="module" crossorigin src="/assets/index-hOi7BErf.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DZ-ofRka.css">
+  <script type="module" crossorigin src="/assets/index-DfCCLbCx.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CbTQxrGY.css">
 </head>
 
-<body class="container is-fluid my-6">
+<body class="container is-fluid">
   <header class="my-5">
-    <h1 class="title has-text-centered is-1">oKanban</h1>
+    <h1 class="title has-text-centered is-1">My Kanban's Board</h1>
     <button class="button is-info is-outlined" id="add-list-button"><i class="fas fa-plus mr-2"></i>Ajouter une
       liste</button>
   </header>
 
-  <main id="lists-container">
+  <main id="lists-container" >
     <!-- Rempli par le JS -->
   </main>
 
@@ -85,7 +85,7 @@
           </div>
 
           <div class="modal-card-body">
-            <label for="edit-list-title" class="label">Titre</label>
+            <label for="edit-list-title" class="label">Nouveau titre</label>
             <input id="edit-list-title" class="input" type="text" name="title" placeholder="Titre modifié">
           </div>
 
@@ -129,6 +129,32 @@
     </div>
   </dialog>
 
+  <dialog id="delete-card-modal">
+    <div class="modal is-active">
+      <div class="modal-background close"></div>
+      <div class="modal-card">
+        <form>
+          <div class="modal-card-head">
+              <p class="modal-card-title">Confirmer la suppression</p>
+            <button class="delete close" type="button" aria-label="close"></button>
+          </div>
+
+          <div class="modal-card-body">
+            <p class="has-text-weight-bold has-text-white">
+              Êtes-vous sûr de vouloir supprimer cette carte ?
+            </p>            
+          </div>
+          <div class="modal-card-foot"> 
+            <div class="buttons">
+              <button class="button is-danger" type="submit">Supprimer</button>
+              <button class="button close" type="button">Annuler</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
   <!-- Fenêtre de dialogue pour ajouter une carte -->
   <dialog id="add-card-modal">
     <div class="modal is-active">
@@ -157,14 +183,67 @@
     </div>
   </dialog>
 
+  <dialog id="edit-card-modal">
+    <div class="modal is-active">
+      <div class="modal-background close"></div>
+      <div class="modal-card">
+        <form>
+          <div class="modal-card-head">
+            <p class="modal-card-title">Changer le contenu de la carte</p>
+            <button class="delete close" type="button" aria-label="close"></button>
+          </div>
+
+          <div class="modal-card-body">
+            <label for="edit-card-content" class="label">Nouveau contenu</label>
+            <input id="edit-card-content" class="input" type="text" name="content" placeholder="Contenu modifié">
+          </div>
+
+          <div class="modal-card-foot">
+            <div class="buttons">
+              <button class="button is-success">Modifier</button>
+              <button class="button close" type="button">Annuler</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="footer has-background-info-dark has-text-white mt-5 is-fullwidth">
+    <div class="content has-text-centered">
+      <p>
+        <strong>My Kanban's Board</strong> - Un outil de gestion de projet inspiré de Kanban.
+      </p>
+      <p>Developed by Flavien GUILLON</p>
+      <p>
+        <a href="https://github.com/aldebarian-git" class="has-text-white">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+          GitHub
+        </a> |
+        <a href="https://aldebarian-git.github.io/Portefolio/" class="has-text-white">
+          <span class="icon">
+            <i class="fas fa-briefcase"></i>
+          </span>
+          Portfolio
+        </a>
+      </p>
+      <p>&copy; 2025 My Kanban's Board. Tous droits réservés.</p>
+    </div>
+  </footer>
+  
+  
+
 </body>
 
 
 <!-- Template pour une liste -->
 <template id="list-template">
   <section class="message is-info" data-type="list">
-    <div class="message-header">
-      <div slot="list-title">TITRE_DE_LA_LISTE</div>
+    <div class="message-header">      
+        <i class="fas fa-arrows-alt drag-button"></i>        
+        <div slot="list-title">TITRE_DE_LA_LISTE</div>      
       <div class="toolsButton">
         <span class="icon is-clickable"><i class="fas fa-pencil-alt edit-list-button"></i></span>
         <span class="icon is-clickable"><i class="fas fa-plus add-card-button"></i></span>
@@ -183,10 +262,13 @@
 <template id="card-template">
   <article class="card" data-type="card">
     <div class="card-header">
-      <div class="card-header-title has-text-weight-medium">CONTENU_DE_LA_CARTE</div>
+      <div class="card-header-title-container">
+        <i class="fas fa-arrows-alt drag-button"></i>
+        <div class="card-header-title has-text-weight-medium">CONTENU_DE_LA_CARTE</div>
+      </div>
       <div class="card-header-icon">
-        <span class="icon has-text-success"><i class="fas fa-pencil-alt"></i></span>
-        <span class="icon has-text-danger ml-2  delete-card-button"><i class="fas fa-trash-alt"></i></span>
+        <span class="icon has-text-success edit-card-button"><i class="fas fa-pencil-alt"></i></span>
+        <span class="icon has-text-danger ml-2 delete-card-button"><i class="fas fa-trash-alt"></i></span>
       </div>
     </div>
   </article>
