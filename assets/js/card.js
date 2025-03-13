@@ -1,4 +1,5 @@
 import api from "./api.js";
+import dragAndDrop from "./dragAndDrop.js";
 import modal from "./modal.js";
 import toast from "./toast.js";
 
@@ -59,6 +60,9 @@ const card = {
     form.reset();
     modal.close("#add-card-modal");
     toast.success("Carte créée !");
+    // On initialise le drag and drop des cartes
+    dragAndDrop.handleDragAndDropCard();
+    dragAndDrop.handleDragAndDropList();
   },
 
   async handleDeleteCard(event) {
@@ -122,6 +126,7 @@ const card = {
     cloneCard.querySelector(".card-header-title").textContent = card.content;
     cloneCard.querySelector(".card").dataset.cardId = card.id;
     cloneCard.querySelector(".card").dataset.listId = card.list_id;
+    cloneCard.querySelector(".card").dataset.cardPosition = card.position;
 
     // Ajout de l'event listener pour la suppression
     cloneCard
