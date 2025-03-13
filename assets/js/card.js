@@ -60,7 +60,7 @@ const card = {
     form.reset();
     modal.close("#add-card-modal");
     toast.success("Carte créée !");
-    // On initialise le drag and drop des cartes
+    // On initialise le drag and drop des cartes et des listes
     dragAndDrop.handleDragAndDropCard();
     dragAndDrop.handleDragAndDropList();
   },
