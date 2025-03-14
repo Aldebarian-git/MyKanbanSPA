@@ -4,6 +4,8 @@ import list from "./list.js";
 import card from "./card.js";
 import toast from "./toast.js";
 
+import themeToogle from "./themeToogle.js";
+
 
 const app = {
   /**
@@ -13,7 +15,8 @@ const app = {
     toast.init();
     modal.init();
     list.init();
-    card.init();
+    card.init();    
+    themeToogle();
   },
 
 };

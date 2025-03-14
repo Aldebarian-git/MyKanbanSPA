@@ -4,8 +4,8 @@ import "izitoast/dist/css/iziToast.min.css";
 const toast = {
   init() {
     iziToast.settings({
-      position: "topRight",
-      timeout: 5000,               
+      position: "topCenter",
+      timeout: 5000,                          
     });
   },
 
@@ -13,6 +13,7 @@ const toast = {
     iziToast.success({
       title: "Succès",
       message: message,
+            
     });
   },
   error(message) {

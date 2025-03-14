@@ -4,23 +4,91 @@
   box-sizing: border-box;
 }
 
+
+/* Thème clair (style Post-it) */
+:root {
+  --primary-color: #ffdd57; /* Jaune Post-it */
+  --background-color: #fff8dc; /* Imitation papier */
+  --text-color: #5a3e1b; /* Marron pour effet manuscrit */
+  --card-background: #fffbcc; /* Légèrement plus foncé */
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --message-header-color: #ffdd57;
+  --message-body-color: #fff375;
+  --card-background-color: #5a3e1b;
+}
+
+/* Thème sombre (moderne & contrasté) */
+.dark-theme {
+  --primary-color: #8a2be2; /* Violet électrique */
+  --background-color: #1a1a2e; /* Bleu nuit */
+  --text-color: #f0f0f0; /* Texte clair */
+  --card-background: #252545; /* Gris foncé */
+  --shadow-color: rgba(255, 255, 255, 0.1);
+  --message-header-color: #7188E2;
+  --message-body-color: #06374B;
+  --footer-title-color: #222222;
+  --card-background-color: #252545;
+
+}
+
+/* Appliquer les couleurs aux éléments Bulma */
+
+.button {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+.button:hover {
+  background-color: var(--primary-color);
+  filter: brightness(90%);
+}
+
 html {
   min-height: 100vh;
 }
 
 body {
+  background-color: var(--background-color);
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   justify-content: space-between;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  
 }
 
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
+
+#title {
+  color: var(--text-color);
+  font-size: clamp(2rem, 7vw, 5rem);  
+  font-family: 'Caveat', cursive;
+}
+
+.test {
+  font-family: 'Permanent Marker', cursive;
+}
+
+i {
+  padding: 10px;
+}
+
+#tryIt {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  align-self: flex-end;
+  
+}
+
 
 main {
   display: grid;
@@ -44,7 +112,7 @@ dialog::backdrop {
     dodgerblue,
     green
   );
-  opacity: 0.75;
+  opacity: 0.75;  
 }
 
 .drag-button {
@@ -57,18 +125,176 @@ dialog::backdrop {
   justify-content: space-between;
 }
 
+.card{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: max-content;
+  background-color: var(--card-background-color);
+}
+
 .card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 15px;
+  
+   
+}
+
+.card-header-title {
+  display: flex;
+  word-wrap: break-word;
+}
+
+
+
+
+
+#add-list-button {
+  width: min-content;
+  align-self: flex-end;
+  padding-left: 8px;
+}
+
+/* Liste */
+
+.message-header {
+  background-color: var(--message-header-color);
+}
+.message-body {
+  background-color: var(--message-body-color);
 }
 
 .footer {
   margin-top: auto; /* Cela pousse le footer tout en bas */
   padding-top: 30px; /* Ajuste l'espacement supérieur */
   padding-bottom: 30px; /* Ajuste l'espacement inférieur */
+  background-color: var(--message-header-color);
+  color: var(--text-color);
 }
+
+.footer a {
+  color: var(--text-color);
+}
+
+.footer i {
+  color: var(--text-color);
+}
+
+.footer strong, .footer h2, .footer h3 {
+  color: var(--footer-title-color);
+}
+
+.footer h2 {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+}
+
+
+
+.footer p span {
+  color: var(--text-color);
+}
+
+/* Toast */
+
+
+/* Toggle */
+
+
+.toggle-checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.toggle-slot {
+  position: relative;
+  height: 2.88em; /* Réduit la hauteur de 20% */
+  width: 5.76em; /* Réduit la largeur de 20% */
+  border: 1.28px solid #e4e7ec; /* Ajuste l'épaisseur de la bordure */
+  border-radius: 2.88em; /* Réduit la bordure arrondie de 20% */
+  background-color: white;
+  box-shadow: 0px 3.68px 7.68px #e4e7ec; /* Ajuste l'ombre */
+  transition: background-color 250ms;
+}
+
+.toggle-checkbox:checked ~ .toggle-slot {
+  background-color: #374151;
+}
+
+.toggle-button {
+  transform: translate(3.36em, 0.48em); /* Réduit la translation de 20% */
+  position: absolute;
+  height: 1.76em; /* Réduit la hauteur de 20% */
+  width: 1.76em; /* Réduit la largeur de 20% */
+  border-radius: 50%;
+  background-color: #ffeccf;
+  box-shadow: inset 0px 0px 0px 0.224em #ffbb52; /* Ajuste l'ombre */
+  transition: background-color 250ms, border-color 250ms, transform 500ms cubic-bezier(.26,2,.46,.71);
+}
+
+.toggle-checkbox:checked ~ .toggle-slot .toggle-button {
+  background-color: #485367;
+  box-shadow: inset 0px 0px 0px 0.224em white;
+  transform: translate(0.48em, 0.48em);
+}
+
+.sun-icon {
+  position: absolute;
+  height: 1.73em; /* Réduit la taille de 20% */
+  width: 1.73em; /* Réduit la taille de 20% */
+  color: #ffbb52;
+}
+
+.sun-icon-wrapper {
+  position: absolute;
+  height: 1.73em; /* Réduit la taille de 20% */
+  width: 1.73em; /* Réduit la taille de 20% */
+  opacity: 1;
+  transform: translate(0.58em, 0.58em) rotate(6.4deg); /* Ajuste la translation */
+  transform-origin: 50% 50%;
+  transition: opacity 150ms, transform 500ms cubic-bezier(.26,2,.46,.71);
+}
+
+.toggle-checkbox:checked ~ .toggle-slot .sun-icon-wrapper {
+  opacity: 0;
+  transform: translate(0.77em, 0.58em) rotate(0deg);
+}
+
+.moon-icon {
+  position: absolute;
+  height: 1.73em; /* Réduit la taille de 20% */
+  width: 1.73em; /* Réduit la taille de 20% */
+  color: white;
+}
+
+.moon-icon-wrapper {
+  position: absolute;
+  height: 1.73em; /* Réduit la taille de 20% */
+  width: 1.73em; /* Réduit la taille de 20% */
+  opacity: 0;
+  transform: translate(3.27em, 0.58em) rotate(0deg); /* Ajuste la translation */
+  transform-origin: 50% 50%;
+  transition: opacity 150ms, transform 500ms cubic-bezier(.26,2.5,.46,.71);
+}
+
+.toggle-checkbox:checked ~ .toggle-slot .moon-icon-wrapper {
+  opacity: 1;
+  transform: translate(3.52em, 0.58em) rotate(-6.4deg);
+}
+
+
+
+
+/* FIN */
+
+
+
+
 
 @media screen and (max-width: 768px) {
   header h1 {

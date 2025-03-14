@@ -21,6 +21,10 @@
 
   <!-- Custom CSS-->
   <link rel="stylesheet" href="./assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+
 
   <!-- Custom JS -->
   <!--
@@ -30,17 +34,35 @@
     -->
   <script defer src="./assets/js/index.js" type="module"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+  <script src="https://code.iconify.design/1/1.0.4/iconify.min.js">   </script>
 
 </head>
 
 <body class="container is-fluid">
   <header class="my-5">
-    <h1 class="title has-text-centered is-1">My Kanban's Board</h1>
-    <button class="button is-info is-outlined" id="add-list-button"><i class="fas fa-plus mr-2"></i>Ajouter une
-      liste</button>
-  </header>
+    <h1 class="title has-text-centered is-1" id="title">My Kanban's Board</h1>    
 
+      <div id="toogle">
+        <label>
+          <input class='toggle-checkbox' type='checkbox' id="theme-toggle"></input>
+          <div class='toggle-slot'>
+            <div class='sun-icon-wrapper'>
+              <div class="iconify sun-icon" data-icon="feather-sun" data-inline="false"></div>
+            </div>
+            <div class='toggle-button'></div>
+            <div class='moon-icon-wrapper'>
+              <div class="iconify moon-icon" data-icon="feather-moon" data-inline="false"></div>
+            </div>
+          </div>
+        </label>
+      </div>
+        
+  </header>  
+  <p class="has-text-centered is-size-4 test">Testez-moi ! Drag & Drop, Ajout, Modification, Suppression, Thème, etc.</p>
+  <button class="button is-primary mt-2 mb-2 " id="add-list-button"><i class="fas fa-plus"></i>Ajouter une
+    liste</button>
   <main id="lists-container" >
+
     <!-- Rempli par le JS -->
   </main>
 
@@ -209,27 +231,41 @@
     </div>
   </dialog>
 
-  <footer class="footer has-background-info-dark has-text-white mt-5 is-fullwidth">
+  <footer class="footer mt-5 is-fullwidth">
     <div class="content has-text-centered">
+      <h2 class="title">My Kanban's Board</h2>
       <p>
-        My Kanban's Board - Un outil de gestion de projet inspiré de Kanban.
+        Un outil de gestion de projet inspiré de la méthode Kanban, conçu pour une organisation intuitive et efficace.
       </p>
-      <p>Developed by Flavien GUILLON</p>
-      <p>
-        <a href="https://github.com/aldebarian-git" class="has-text-white">
-          <span class="icon">
-            <i class="fab fa-github"></i>
-          </span>
-          GitHub
-        </a> |
-        <a href="https://aldebarian-git.github.io/Portefolio/" class="has-text-white">
-          <span class="icon">
-            <i class="fas fa-briefcase"></i>
-          </span>
-          Portfolio
-        </a>
-      </p>
-      <p>&copy; 2025 My Kanban's Board. Tous droits réservés.</p>
+  
+      <div class="columns is-centered mt-4">
+        <div class="column is-6">
+          <h3 class="title is-5">Technologies utilisées</h3>
+          <p><strong>Backend :</strong> Node.js, Express, PostgreSQL, Sequelize (API REST)</p>
+          <p><strong>Frontend :</strong> Vite, JavaScript (animations), Bulma (CSS framework)</p>
+          <p><strong>Autres librairies :</strong> Izitoast (notifications), Sortable.js (drag & drop)</p>
+        </div>
+      </div>
+  
+      <div class="mt-4">
+        <p><strong>Développé par Flavien GUILLON</strong></p>
+        <p>
+          <a href="https://github.com/aldebarian-git" class="button is-dark">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+            <span>GitHub</span>
+          </a>
+          <a href="https://aldebarian-git.github.io/Portefolio/" class="button is-info">
+            <span class="icon">
+              <i class="fas fa-briefcase"></i>
+            </span>
+            <span>Portfolio</span>
+          </a>
+        </p>
+      </div>
+  
+      <p class="mt-4">&copy; 2025 My Kanban's Board. Tous droits réservés.</p>
     </div>
   </footer>
   
